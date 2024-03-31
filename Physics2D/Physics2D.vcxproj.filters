@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="MathUtils">
+      <UniqueIdentifier>{1fe29fd2-1ff0-40f1-a582-27a880407dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathUtils\includes">
+      <UniqueIdentifier>{441bc921-5266-4785-a7a9-3970f361391f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathUtils\sources">
+      <UniqueIdentifier>{7eebeb50-7c06-4e92-8032-0619e1ef3c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsShape">
+      <UniqueIdentifier>{147a37ba-dfb5-42b0-9a29-77aaec43fa7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsShape\includes">
+      <UniqueIdentifier>{8766060a-bc0b-4ea0-91f1-b30ccb2fa7dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsShape\sources">
+      <UniqueIdentifier>{e415a056-0c90-498b-ace8-66b04ff32e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsBody">
+      <UniqueIdentifier>{612f46ae-9b0a-4c86-9924-172932f7bd24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsBody\includes">
+      <UniqueIdentifier>{3a31039b-fb4e-4639-a734-207357627c42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsBody\sources">
+      <UniqueIdentifier>{7d1f52f4-af95-4b58-a108-bfc22395a4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{aac93966-9df6-4518-b128-cbe0300aba0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision\sources">
+      <UniqueIdentifier>{1c6f923c-40e2-4eff-a2c9-4278c65caec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision\Includes">
+      <UniqueIdentifier>{6cdeb797-09d5-4f2a-8fa3-4635782549f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhysicsWorld">
+      <UniqueIdentifier>{776ec84a-37ef-4fdb-be25-31525d0ad61c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MathUtils\includes\PhysicsVector2D.h">
+      <Filter>MathUtils\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtils\includes\GlobalParameter.h">
+      <Filter>MathUtils\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\Collision\CollisionDetector.h">
+      <Filter>Collision\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\Collision\Contact.h">
+      <Filter>Collision\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsWorld\PhysicsWorld.h">
+      <Filter>PhysicsWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsBody\DynamicBody.h">
+      <Filter>PhysicsBody\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsBody\PhysicsBody.h">
+      <Filter>PhysicsBody\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsBody\StaticBody.h">
+      <Filter>PhysicsBody\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsShape\CircleShape.h">
+      <Filter>PhysicsShape\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsShape\PhyscisShape.h">
+      <Filter>PhysicsShape\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="publicAPI\PhysicsShape\RectangleShape.h">
+      <Filter>PhysicsShape\includes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PhysicsTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtils\sources\PhysicsVector2D.cpp">
+      <Filter>MathUtils\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsShape\sources\CircleShape.cpp">
+      <Filter>PhysicsShape\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsShape\sources\PhyscisShape.cpp">
+      <Filter>PhysicsShape\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsShape\sources\RectangleShape.cpp">
+      <Filter>PhysicsShape\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBody\sources\DynamicBody.cpp">
+      <Filter>PhysicsBody\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBody\sources\PhysicsBody.cpp">
+      <Filter>PhysicsBody\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBody\sources\StaticBody.cpp">
+      <Filter>PhysicsBody\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\sources\CollisionDetector.cpp">
+      <Filter>Collision\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\sources\Contact.cpp">
+      <Filter>Collision\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsWorld\PhysicsWorld.cpp">
+      <Filter>PhysicsWorld</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
