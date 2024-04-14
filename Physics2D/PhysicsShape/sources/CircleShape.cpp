@@ -1,9 +1,9 @@
 #include "CircleShape.h"
 
-CircleShape::CircleShape(const double i_radius): PhysicsShape()
+CircleShape::CircleShape(const double radius): PhysicsShape()
 {
 	m_shapeType = ShapeType::CIRCLE_SHAPE;
-	m_radius = i_radius;
+	m_radius = radius;
 }
 
 CircleShape::~CircleShape()
@@ -15,12 +15,12 @@ double CircleShape::radius()
 	return m_radius;
 }
 
-void CircleShape::GetAABB(PhysicsVector2D& i_min, PhysicsVector2D& i_max)
+void CircleShape::GetAABB(PhysicsVector& min, PhysicsVector& max)
 {
-	i_min.x() = -m_radius;
-	i_min.y() = -m_radius;
-	i_max.x() = m_radius;
-	i_max.y() = m_radius;
+	min.x() = -m_radius;
+	min.y() = -m_radius;
+	max.x() = m_radius;
+	max.y() = m_radius;
 }
 
 double CircleShape::GetArea()

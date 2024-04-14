@@ -7,23 +7,23 @@ class RectangleShape : public PhysicsShape
 {
 public:
 
-	RectangleShape(const double i_halfWidth, const double i_halfHeight);
+	RectangleShape(const double halfWidth, const double halfHeight);
 
 	~RectangleShape();
 
-	std::vector<PhysicsVector2D> GetVertices() const;
+	std::vector<PhysicsVector> GetVertices() const;
 
 	double width();
 
 	double height();
 
-	void GetAABB(PhysicsVector2D& i_min, PhysicsVector2D& i_max) override;
+	void GetAABB(PhysicsVector& min, PhysicsVector& max) override;
 
 	double GetArea() override;
 
 private:
 
-	std::vector<PhysicsVector2D> m_vertices;
+	std::vector<PhysicsVector> m_vertices;
 	double m_halfWidth = 0.0;
 	double m_halfHeight = 0.0;
 };

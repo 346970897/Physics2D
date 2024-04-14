@@ -7,13 +7,13 @@ class CircleShape : public PhysicsShape
 {
 public:
 
-	CircleShape(const double i_radius);
+	CircleShape(const double radius);
 
 	~CircleShape();
 
 	double radius();
 
-	void GetAABB(PhysicsVector2D& i_min, PhysicsVector2D& i_max) override;
+	void GetAABB(PhysicsVector& min, PhysicsVector& max) override;
 
 	double GetArea() override;
 

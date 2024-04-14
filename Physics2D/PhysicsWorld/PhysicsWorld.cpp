@@ -1,9 +1,9 @@
 #include "PhysicsWorld.h"
 #include "CollisionDetector.h"
 
-PhysicsWorld* PhysicsWorld::CreatePhysicsWorld(const PhysicsVector2D i_gravity)
+PhysicsWorld* PhysicsWorld::CreatePhysicsWorld(const PhysicsVector gravity)
 {
-	return new PhysicsWorld(i_gravity);
+	return new PhysicsWorld(gravity);
 }
 
 PhysicsWorld::~PhysicsWorld()
@@ -14,9 +14,9 @@ PhysicsWorld::~PhysicsWorld()
 	m_bodies.clear();
 }
 
-PhysicsWorld::PhysicsWorld(const PhysicsVector2D i_gravity)
+PhysicsWorld::PhysicsWorld(const PhysicsVector gravity)
 {
-	m_gravity = i_gravity;
+	m_gravity = gravity;
 }
 
 std::vector<PhysicsBody*> PhysicsWorld::GetBodies() const
@@ -24,27 +24,27 @@ std::vector<PhysicsBody*> PhysicsWorld::GetBodies() const
 	return m_bodies;
 }
 
-void PhysicsWorld::AddBody(PhysicsBody* i_body)
+void PhysicsWorld::AddBody(PhysicsBody* body)
 {
-	m_bodies.push_back(i_body);
+	m_bodies.push_back(body);
 }
 
-PhysicsBody* PhysicsWorld::GetBodyByIndex(const int i_index)
+PhysicsBody* PhysicsWorld::GetBodyByIndex(const int index)
 {
-	if (m_bodies.size() <= i_index)
+	if (m_bodies.size() <= index)
 		return nullptr;
 
-	return m_bodies[i_index];
+	return m_bodies[index];
 }
 
-void PhysicsWorld::RemoveBodyByIndex(const int i_index)
+void PhysicsWorld::RemoveBodyByIndex(const int index)
 {
-	if (m_bodies.size() > i_index)
+	if (m_bodies.size() > index)
 	{
 		int index = 0;
 		for (auto iterator = m_bodies.begin(); iterator != m_bodies.end(); iterator++)
 		{
-			if (index == i_index) 
+			if (index == index) 
 			{
 				m_bodies.erase(iterator);
 				delete *iterator;
@@ -63,13 +63,13 @@ void PhysicsWorld::ResetBodies()
 	m_bodies.clear();
 }
 
-void PhysicsWorld::Simulation(const double i_time, const int i_iter)
+void PhysicsWorld::Simulation(const double time, const int iter)
 {
-	for (int i = 0; i < i_iter; i++)
+	for (int i = 0; i < iter; i++)
 	{
 		// update pose and velocity of body 
 		for (auto body : m_bodies)
-			body->Simulation(i_time, m_gravity, i_iter);
+			body->Simulation(time, m_gravity, iter);
 
 		// process collide
 		for (int j = 0; j < m_bodies.size(); j++)

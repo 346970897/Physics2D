@@ -1,10 +1,10 @@
 #include "DynamicBody.h"
 
-DynamicBody::DynamicBody(const PhysicsVector2D i_globalPose, const double i_density)
+DynamicBody::DynamicBody(const PhysicsTransform globalPose, const double density)
 {
 	m_bodyType = BodyType::DYNAMIC_BODY;
-	m_globaPose = i_globalPose;
-	m_density = i_density;
+	m_globaPose = globalPose;
+	m_density = density;
 }
 
 DynamicBody::~DynamicBody()
@@ -16,11 +16,11 @@ double DynamicBody::GetMass() const
 	return m_mass;
 }
 
-void DynamicBody::SetMass(const double i_mass)
+void DynamicBody::SetMass(const double mass)
 {
-	if (i_mass >= Epsilon)
+	if (mass >= Epsilon)
 	{
-		m_mass = i_mass;
+		m_mass = mass;
 		m_invMass = 1 / m_mass;
 	}
 }
@@ -37,16 +37,16 @@ void DynamicBody::UpdateMass()
 	}
 }
 
-void DynamicBody::MoveTo(const PhysicsVector2D i_pose)
+void DynamicBody::MoveTo(const PhysicsTransform pose)
 {
-	m_globaPose = m_globaPose + i_pose;
+	m_globaPose = m_globaPose * pose;
 }
 
-void DynamicBody::Simulation(const double i_time, const PhysicsVector2D i_gravity, const int iterator)
+void DynamicBody::Simulation(const double time, const PhysicsVector gravity, const int iterator)
 {
-	double stepTime = i_time / iterator;
-	PhysicsVector2D m_linearAccele = i_gravity + m_force * m_invMass;
+	double stepTime = time / iterator;
+	PhysicsVector m_linearAccele = gravity + m_force * m_invMass;
 	m_linearVelocity = m_linearVelocity + m_linearAccele * stepTime;
-	m_globaPose = m_globaPose + m_linearVelocity * stepTime;
+	m_globaPose = m_globaPose * PhysicsTransform((m_linearVelocity * stepTime));
 }
 

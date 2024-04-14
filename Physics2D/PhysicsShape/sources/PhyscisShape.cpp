@@ -1,10 +1,10 @@
 #include "PhyscisShape.h"
 
-PhysicsShape::PhysicsShape(const double i_restitution, const double i_staticFriction, const double i_dynamicFriction)
+PhysicsShape::PhysicsShape(const double restitution, const double staticFriction, const double dynamicFriction)
 {
-    m_restitution = i_restitution;
-    m_staticFriction = i_staticFriction;
-    m_dynamicFriction = i_dynamicFriction;
+    m_restitution = restitution;
+    m_staticFriction = staticFriction;
+    m_dynamicFriction = dynamicFriction;
 }
 
 PhysicsShape::~PhysicsShape()

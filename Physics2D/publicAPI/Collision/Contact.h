@@ -19,12 +19,14 @@ public:
 	PhysicsBody* bodyB = nullptr;
 	PhysicsShape* shapeA = nullptr;
 	PhysicsShape* shapeB = nullptr;
-	PhysicsVector2D normal = PhysicsVector2D();
+	PhysicsVector normal = PhysicsVector();
 	double penetration = 0.0;
+	PhysicsVector* point1 = nullptr;
+	PhysicsVector* point2 = nullptr;
 
 private:
 
-	void resolvePenetraion() const;
+	void resolvePenetration() const;
 
 	void resolveVelocity() const;
 

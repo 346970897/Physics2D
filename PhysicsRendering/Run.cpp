@@ -40,9 +40,11 @@ public:
 	{
 		if (m_body)
 		{
-			PhysicsVector2D global_pose = m_body->GetGlobaPose();
-			osg::Vec3 position(global_pose.x(), global_pose.y(), 0);
+			PhysicsTransform global_pose = m_body->GetGlobaPose();
+			osg::Vec3 position(global_pose.GetPosition().x(), global_pose.GetPosition().y(), 0);
+			osg::Quat rotation(global_pose.GetRotation().x(), global_pose.GetRotation().y(), global_pose.GetRotation().z(), global_pose.GetRotation().w());
 			m_transform->setPosition(position);
+			m_transform->setAttitude(rotation);
 		}
 
 		// Call base class update routine
@@ -69,7 +71,7 @@ public:
 				double half_width = 150;
 				osg::Vec3 position(0, -100, 0);
 				osg::ref_ptr<osg::PositionAttitudeTransform> transform = PhysicsRendering::create_box(half_width, half_height, position);
-				ground_body = PhysicsRendering::create_ground_body(half_width, half_height, PhysicsVector2D(position.x(), position.y()));
+				ground_body = PhysicsRendering::create_ground_body(half_width, half_height, PhysicsVector(position.x(), position.y(), 0));
 				transform->setUpdateCallback(new UpdateCallback(ground_body, transform.get()));
 				root->addChild(transform);
 				physics_world->AddBody(ground_body);
@@ -103,14 +105,14 @@ public:
 					{
 						double radius = 10;
 						transform = PhysicsRendering::create_circle(radius, position);
-						body = PhysicsRendering::create_circle_body(radius, PhysicsVector2D(position.x(), position.y()));
+						body = PhysicsRendering::create_circle_body(radius, PhysicsVector(position.x(), position.y(), 0));
 					}
 					else
 					{
 						double half_height = 10;
 						double half_width = 10;
 						transform = PhysicsRendering::create_box(half_width, half_height, position);
-						body = PhysicsRendering::create_box_body(half_width, half_height, PhysicsVector2D(position.x(), position.y()));
+						body = PhysicsRendering::create_box_body(half_width, half_height, PhysicsVector(position.x(), position.y(), 0));
 					}
 
 					transform->setUpdateCallback(new UpdateCallback(body, transform.get()));

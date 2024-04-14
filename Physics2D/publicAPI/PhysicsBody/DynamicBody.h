@@ -7,21 +7,21 @@ class DynamicBody : public PhysicsBody
 {
 public:
 
-	DynamicBody(const PhysicsVector2D i_globalPose, const double i_density);
+	DynamicBody(const PhysicsTransform globalPose, const double density);
 
 	~DynamicBody();
 
 	double GetMass() const;
 
-	void SetMass(const double i_mass);
+	void SetMass(const double mass);
 
 	void UpdateMass();
 
-	void MoveTo(const PhysicsVector2D i_pose);
+	void MoveTo(const PhysicsTransform pose);
 
 protected:
 
-	void Simulation(const double i_time, const PhysicsVector2D i_gravity, const int iterator = 1) override;
+	void Simulation(const double time, const PhysicsVector gravity, const int iterator = 1) override;
 
 private:
 

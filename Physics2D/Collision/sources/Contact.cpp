@@ -3,11 +3,22 @@
 
 Contact::Contact()
 {
-
+    point1 = new PhysicsVector();
+    point2 = new PhysicsVector();
 }
 
 Contact::~Contact()
 {
+    if (point1)
+    {
+        delete point1;
+        point1 = nullptr;
+    }
+    if (point2)
+    {
+        delete point2;
+        point2 = nullptr;
+    }
 }
 
 void Contact::resolve()
@@ -15,19 +26,19 @@ void Contact::resolve()
     if (bodyA->GetBodyType() & BodyType::STATIC_BODY && bodyB->GetBodyType() & BodyType::STATIC_BODY)
         return;
 
-    resolvePenetraion();
+    resolvePenetration();
     resolveVelocity();
 }
 
-void Contact::resolvePenetraion() const
+void Contact::resolvePenetration() const
 {
     if ((bodyA->GetBodyType() & BodyType::DYNAMIC_BODY) != 0 && bodyA->GetShape()->GetShapeType() & ShapeType::RECTANGLE_SHAPE && bodyB->GetShape()->GetShapeType() & ShapeType::CIRCLE_SHAPE)
     {
         int a = 0;
     }
     double totalInverseMass = bodyA->GetInvMass() + bodyB->GetInvMass();
-    PhysicsVector2D movePoseA = normal * (penetration * bodyA->GetInvMass() / totalInverseMass);
-    PhysicsVector2D movePoseB = -normal * (penetration * bodyB->GetInvMass() / totalInverseMass);
+    PhysicsVector movePoseA = normal * (penetration * bodyA->GetInvMass() / totalInverseMass);
+    PhysicsVector movePoseB = -normal * (penetration * bodyB->GetInvMass() / totalInverseMass);
 
     if(bodyA->GetBodyType() & BodyType::DYNAMIC_BODY)
         dynamic_cast<DynamicBody*>(bodyA)->MoveTo(movePoseA);
@@ -37,12 +48,12 @@ void Contact::resolvePenetraion() const
 
 void Contact::resolveVelocity() const
 {
-    PhysicsVector2D relativeLinearVel = bodyB->GetLinearVelocity() - bodyA->GetLinearVelocity();
+    PhysicsVector relativeLinearVel = bodyB->GetLinearVelocity() - bodyA->GetLinearVelocity();
     double e = std::min(shapeA->GetRestitution(), shapeB->GetRestitution());
     double lambda = -(1.0 + e) * relativeLinearVel.DotProduct(normal);
     lambda /= (bodyA->GetInvMass() + bodyB->GetInvMass());
-    PhysicsVector2D linearVelA = -normal * lambda * bodyA->GetInvMass();
-    PhysicsVector2D linearVelB = normal * lambda * bodyB->GetInvMass();
+    PhysicsVector linearVelA = -normal * lambda * bodyA->GetInvMass();
+    PhysicsVector linearVelB = normal * lambda * bodyB->GetInvMass();
 
     bodyA->AddLinearVelocity(linearVelA);
     bodyB->AddLinearVelocity(linearVelB);

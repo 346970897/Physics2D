@@ -30,7 +30,7 @@ osg::ref_ptr<osgViewer::Viewer> PhysicsRendering::init_rendering()
 	return m_viewer;
 }
 
-PhysicsWorld* PhysicsRendering::init_physics(const PhysicsVector2D gravity)
+PhysicsWorld* PhysicsRendering::init_physics(const PhysicsVector gravity)
 {	
 	if (!m_world)
 		m_world = PhysicsWorld::CreatePhysicsWorld(gravity);
@@ -119,7 +119,7 @@ osg::ref_ptr<osg::PositionAttitudeTransform> PhysicsRendering::create_box(const 
 	return transform;
 }
 
-PhysicsBody* PhysicsRendering::create_circle_body(const double radius, const PhysicsVector2D pose)
+PhysicsBody* PhysicsRendering::create_circle_body(const double radius, const PhysicsVector pose)
 {
 	CircleShape* circle_shape = new CircleShape(radius);
 	DynamicBody* circle_body = new DynamicBody(pose, 1.0); 
@@ -129,7 +129,7 @@ PhysicsBody* PhysicsRendering::create_circle_body(const double radius, const Phy
 	return circle_body;
 }
 
-PhysicsBody* PhysicsRendering::create_ground_body(const double half_width, const double half_height, const PhysicsVector2D pose)
+PhysicsBody* PhysicsRendering::create_ground_body(const double half_width, const double half_height, const PhysicsVector pose)
 {
 	RectangleShape* ground_shape = new RectangleShape(half_width, half_height);
 	StaticBody* ground_body = new StaticBody(pose);
@@ -138,7 +138,7 @@ PhysicsBody* PhysicsRendering::create_ground_body(const double half_width, const
 	return ground_body;
 }
 
-PhysicsBody* PhysicsRendering::create_box_body(const double half_width, const double half_height, const PhysicsVector2D pose)
+PhysicsBody* PhysicsRendering::create_box_body(const double half_width, const double half_height, const PhysicsVector pose)
 {
 	RectangleShape* box_shape = new RectangleShape(half_width, half_height);
 	DynamicBody* box_body = new DynamicBody(pose, 1);

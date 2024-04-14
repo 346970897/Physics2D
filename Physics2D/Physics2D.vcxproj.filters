@@ -54,9 +54,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MathUtils\includes\PhysicsVector2D.h">
-      <Filter>MathUtils\includes</Filter>
-    </ClInclude>
     <ClInclude Include="MathUtils\includes\GlobalParameter.h">
       <Filter>MathUtils\includes</Filter>
     </ClInclude>
@@ -87,13 +84,19 @@
     <ClInclude Include="publicAPI\PhysicsShape\RectangleShape.h">
       <Filter>PhysicsShape\includes</Filter>
     </ClInclude>
+    <ClInclude Include="MathUtils\includes\PhysicsVector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtils\includes\PhysicsTransform.h">
+      <Filter>MathUtils\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtils\includes\PhysicsQuat.h">
+      <Filter>MathUtils\includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhysicsTest.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtils\sources\PhysicsVector2D.cpp">
-      <Filter>MathUtils\sources</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsShape\sources\CircleShape.cpp">
       <Filter>PhysicsShape\sources</Filter>
@@ -121,6 +124,15 @@
     </ClCompile>
     <ClCompile Include="PhysicsWorld\PhysicsWorld.cpp">
       <Filter>PhysicsWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtils\sources\PhysicsVector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtils\sources\PhysicsTransform.cpp">
+      <Filter>MathUtils\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtils\sources\PhysicsQuat.cpp">
+      <Filter>MathUtils\sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

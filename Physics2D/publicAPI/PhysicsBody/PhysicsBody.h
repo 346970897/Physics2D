@@ -20,51 +20,55 @@ public:
 
 	~PhysicsBody();
 
-	virtual void GetAABB(PhysicsVector2D& i_min, PhysicsVector2D& i_max);
+	virtual void GetAABB(PhysicsVector& min, PhysicsVector& max);
 
-	PhysicsVector2D GetGlobaPose();
+	PhysicsTransform GetGlobaPose();
 
-	void SetGlobaPose(const PhysicsVector2D i_globalPose);
+	void SetGlobaPose(const PhysicsTransform globalPose);
 
-	void AddShape(PhysicsShape* i_shape);
+	void AddShape(PhysicsShape* shape);
 
 	PhysicsShape* GetShape();
 
 	BodyType GetBodyType() const;
 
-	PhysicsVector2D GetLinearVelocity() const;
+	PhysicsVector GetLinearVelocity() const;
 
-	void SetLinearVelocity(const PhysicsVector2D i_linearVel);
+	void SetLinearVelocity(const PhysicsVector linearVel);
 
-	void AddLinearVelocity(const PhysicsVector2D i_linearVel);
+	void AddLinearVelocity(const PhysicsVector linearVel);
 
-	PhysicsVector2D GetAngularVelocity() const;
+	PhysicsVector GetAngularVelocity() const;
 
-	void SetAngularVelocity(const PhysicsVector2D i_angularVel);
+	void SetAngularVelocity(const PhysicsVector angularVel);
 
-	PhysicsVector2D GetForce() const;
+	PhysicsVector GetForce() const;
 
-	void AddForce(const PhysicsVector2D i_force);
+	void AddForce(const PhysicsVector force);
 
-	PhysicsVector2D GetTorque() const;
+	PhysicsVector GetTorque() const;
 
-	void AddTorque(const PhysicsVector2D i_torque);
+	void AddTorque(const PhysicsVector torque);
 
 	double GetInvMass() const;
 
-	virtual void Simulation(const double i_time, const PhysicsVector2D i_gravity, const int iterator = 1) = 0;
+	double GetInvInertia() const;
+
+	virtual void Simulation(const double time, const PhysicsVector gravity, const int iterator = 1) = 0;
 
 protected:
 
 	BodyType m_bodyType = BodyType::UNDEFINE_BODY;
-	PhysicsVector2D m_globaPose = PhysicsVector2D();
+	PhysicsTransform m_globaPose = PhysicsTransform();
 	PhysicsShape* m_shape = nullptr;
 	double m_mass = 0.0;
 	double m_invMass = 0.0;
-	PhysicsVector2D m_linearVelocity = PhysicsVector2D();
-	PhysicsVector2D m_angularVelocity = PhysicsVector2D();
-	PhysicsVector2D m_force = PhysicsVector2D();
-	PhysicsVector2D m_torque = PhysicsVector2D();
+	double m_inertia = 0.0;
+	double m_invInertia = 0.0;
+	PhysicsVector m_linearVelocity = PhysicsVector();
+	PhysicsVector m_angularVelocity = PhysicsVector();
+	PhysicsVector m_force = PhysicsVector();
+	PhysicsVector m_torque = PhysicsVector();
 };
 #endif 
 

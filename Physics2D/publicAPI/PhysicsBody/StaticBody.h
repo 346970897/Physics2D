@@ -7,13 +7,13 @@ class StaticBody : public PhysicsBody
 {
 public:
 
-	StaticBody(const PhysicsVector2D i_globalPose);
+	StaticBody(const PhysicsTransform globalPose);
 
 	~StaticBody();
 
 protected:
 
-	void Simulation(const double i_time, const PhysicsVector2D i_gravity, const int iterator = 1) override;
+	void Simulation(const double time, const PhysicsVector gravity, const int iterator = 1) override;
 };
 #endif 
 
