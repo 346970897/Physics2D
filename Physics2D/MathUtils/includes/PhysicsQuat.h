@@ -26,14 +26,29 @@ public:
 
 	double Magnitude();
 
+	PhysicsQuat Normalize();
+
 	PhysicsQuat Conjugate() const;
 
-	PhysicsVector operator*(const PhysicsVector v) const;
+	PhysicsVector MakeRotation(const PhysicsVector v) const;
+
+	void GetRotate(PhysicsVector& axis, double& angle) const;
+
+	PhysicsVector MakeEulerAngles() const;
+
+	void ToRotationMatrix(double matrix[3][3]) const;
 
 	PhysicsQuat operator*(const PhysicsQuat q) const;
 
 	PhysicsQuat& operator*=(const PhysicsQuat q);
 
+	PhysicsQuat operator+(const PhysicsQuat q) const;
+
+	PhysicsQuat& operator+=(const PhysicsQuat q);
+
+	PhysicsQuat operator/(const double value) const;
+
+	PhysicsQuat& operator/=(const double value);
 
 private:
 

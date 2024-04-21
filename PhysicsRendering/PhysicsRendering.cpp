@@ -124,7 +124,7 @@ PhysicsBody* PhysicsRendering::create_circle_body(const double radius, const Phy
 	CircleShape* circle_shape = new CircleShape(radius);
 	DynamicBody* circle_body = new DynamicBody(pose, 1.0); 
 	circle_body->AddShape(circle_shape);
-	circle_body->UpdateMass();
+	circle_body->UpdateMassAndInertia();
 
 	return circle_body;
 }
@@ -143,7 +143,7 @@ PhysicsBody* PhysicsRendering::create_box_body(const double half_width, const do
 	RectangleShape* box_shape = new RectangleShape(half_width, half_height);
 	DynamicBody* box_body = new DynamicBody(pose, 1);
 	box_body->AddShape(box_shape);
-	box_body->UpdateMass();
+	box_body->UpdateMassAndInertia();
 
 	return box_body;
 }

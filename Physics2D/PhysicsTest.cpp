@@ -19,7 +19,7 @@ int main()
 	DynamicBody* rect_body = new DynamicBody(PhysicsTransform(PhysicsVector(0, 100, 0)), 1.0);
 	RectangleShape* rect_shape = new RectangleShape(10, 10);
 	rect_body->AddShape(rect_shape);
-	rect_body->UpdateMass();
+	rect_body->UpdateMassAndInertia();
 
 	// add body to world
 	world->AddBody(ground_plane);

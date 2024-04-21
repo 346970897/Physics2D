@@ -36,7 +36,7 @@ PhysicsQuat PhysicsTransform::GetRotation() const
 PhysicsVector PhysicsTransform::operator*(const PhysicsVector v) const
 {
 	 PhysicsVector retval = v;
-	 retval = m_rotation * retval;
+	 retval = m_rotation.MakeRotation(retval);
 	 retval += m_position;
 
 	 return retval;
@@ -45,7 +45,7 @@ PhysicsVector PhysicsTransform::operator*(const PhysicsVector v) const
 PhysicsTransform PhysicsTransform::operator*(const PhysicsTransform pose) const
 {
 	PhysicsTransform transform = PhysicsTransform();
-	transform.m_position = pose.m_rotation * m_position + pose.m_position;
+	transform.m_position = pose.m_rotation.MakeRotation(m_position) + pose.m_position;
 	transform.m_rotation = m_rotation * pose.m_rotation;
 
 	return transform;

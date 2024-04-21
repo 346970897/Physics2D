@@ -15,7 +15,11 @@ public:
 
 	void SetMass(const double mass);
 
-	void UpdateMass();
+	double GetInertia() const;
+
+	void SetInertia(const double inertia);
+
+	void UpdateMassAndInertia();
 
 	void MoveTo(const PhysicsTransform pose);
 
