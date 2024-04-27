@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>D:\ProgramCode\Physics2D\Physics2D\x64\Debug\</OutDir>
+    <OutDir>D:\git repority\Physics2D\Physics2D\x64\Debug</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsWorld;D:\ProgramCode\Physics2D\Physics2D\publicAPI\Collision;D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsShape;D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsBody;D:\ProgramCode\Physics2D\Physics2D\MathUtils\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsWorld;D:\git repority\Physics2D\Physics2D\publicAPI\Collision;D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsShape;D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsBody;D:\git repority\Physics2D\Physics2D\MathUtils\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

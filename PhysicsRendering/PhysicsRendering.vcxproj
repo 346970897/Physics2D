@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\ProgramCode\OSG\OpenSceneGraph-OpenSceneGraph-3.6.5\install\include;D:\ProgramCode\Physics2D\Physics2D\MathUtils\includes;D:\ProgramCode\Physics2D\Physics2D\publicAPI\Collision;D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsBody;D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsShape;D:\ProgramCode\Physics2D\Physics2D\publicAPI\PhysicsWorld</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\osg\bulid\include;D:\git repority\Physics2D\Physics2D\MathUtils\includes;D:\git repority\Physics2D\Physics2D\publicAPI\Collision;D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsBody;D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsShape;D:\git repority\Physics2D\Physics2D\publicAPI\PhysicsWorld</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\ProgramCode\Physics2D\Physics2D\x64\Debug;D:\ProgramCode\OSG\OpenSceneGraph-OpenSceneGraph-3.6.5\install\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\git repority\Physics2D\Physics2D\x64\Debug;E:\osg\bulid\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenThreadsd.lib;osgd.lib;osgDBd.lib;osgUtild.lib;osgGAd.lib;osgViewerd.lib;osgTextd.lib;osgWidgetd.lib;Physics2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
