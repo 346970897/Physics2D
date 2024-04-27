@@ -29,11 +29,11 @@
 
 - 修改Physical2d的附加包含目录，将框选的路径修改你项目所在的路径
 
-![image-20240427105634802](D:\git repority\Physics2D\readme.assets\image-20240427105634802.png)
+![image-20240427105634802](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427105634802.png)
 
 - 修改PhysicalRendering附加包含目录，将**标号为1的框选路径**修改为你本地的OSG路径，将**标号为2的框选路径**修改你项目所在的路径
 
-![image-20240427105933392](D:\git repority\Physics2D\readme.assets\image-20240427105933392.png)
+![image-20240427105933392](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427105933392.png)
 
 ##### b2.链接库配置
 
@@ -43,15 +43,15 @@
 
 - 查看并保存Physci2D的输出目录（在配置**PhysicalRendering**时会用到），请注意配置类型为静态库,**注意Physci2D无需配置链接库**
 
-![image-20240427110447168](D:\git repority\Physics2D\readme.assets\image-20240427110447168.png)
+![image-20240427110447168](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427110447168.png)
 
 - 修改PhysicalRendering的链接库配置，红框为Physci2D的输出目录，绿框为osg的lib目录
 
-![image-20240427110357229](D:\git repority\Physics2D\readme.assets\image-20240427110357229.png)
+![image-20240427110357229](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427110357229.png)
 
 - 检查附加依赖项
 
-![image-20240427110914371](D:\git repority\Physics2D\readme.assets\image-20240427110914371.png)
+![image-20240427110914371](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427110914371.png)
 
 > OpenThreadsd.lib
 > osgd.lib
@@ -68,6 +68,8 @@
 - 右键解决方案->重新生成解决方案
 - 将PhysicalRendering设置为启动项目
 - 点击运行（鼠标左键生成圆，右键生成正方形）
+
+![image-20240427111944309](https://typora-1302012151.cos.ap-nanjing.myqcloud.com/image-20240427111944309.png)
 
 #### 3. 参考链接
 
