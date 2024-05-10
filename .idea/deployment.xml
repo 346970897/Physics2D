@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="远程主机 (c067ca77-ea84-4c03-b1fb-5833e81ba122)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.WdqpcfUshk" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -13,6 +13,7 @@ CollisionDetector::~CollisionDetector()
 
 bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, Contact& contact)
 {
+	// 
 	bool isCollide = false;
 	if (!bodyA || !bodyB)
 		return false;

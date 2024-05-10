@@ -52,6 +52,9 @@
     <Filter Include="PhysicsWorld">
       <UniqueIdentifier>{776ec84a-37ef-4fdb-be25-31525d0ad61c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="algorim">
+      <UniqueIdentifier>{e701211e-663a-4322-861b-778f443f9a42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathUtils\includes\GlobalParameter.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="MathUtils\includes\PhysicsQuat.h">
       <Filter>MathUtils\includes</Filter>
     </ClInclude>
+    <ClInclude Include="ConvexHull.h">
+      <Filter>algorim</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhysicsTest.cpp">
@@ -133,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="MathUtils\sources\PhysicsQuat.cpp">
       <Filter>MathUtils\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvexHull.cpp">
+      <Filter>algorim</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

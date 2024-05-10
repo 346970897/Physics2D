@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ConvexHull.h" />
     <ClInclude Include="MathUtils\includes\GlobalParameter.h" />
     <ClInclude Include="MathUtils\includes\PhysicsQuat.h" />
     <ClInclude Include="MathUtils\includes\PhysicsTransform.h" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Collision\sources\CollisionDetector.cpp" />
     <ClCompile Include="Collision\sources\Contact.cpp" />
+    <ClCompile Include="ConvexHull.cpp" />
     <ClCompile Include="MathUtils\sources\PhysicsQuat.cpp" />
     <ClCompile Include="MathUtils\sources\PhysicsTransform.cpp" />
     <ClCompile Include="PhysicsTest.cpp" />

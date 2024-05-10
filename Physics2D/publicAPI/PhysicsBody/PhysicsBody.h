@@ -12,6 +12,7 @@ enum BodyType
 	STATIC_BODY = 1 << 2,
 };
 
+
 class PhysicsBody
 {
 public:
