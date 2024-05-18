@@ -20,6 +20,10 @@ public:
 
 	PhysicsQuat GetRotation() const;
 
+	void SetPosition(const PhysicsVector position);
+
+	void SetRotation(const PhysicsQuat rotation);
+
 	PhysicsVector operator* (const PhysicsVector v) const;
 
 	PhysicsTransform operator* (const PhysicsTransform pose) const;

@@ -40,7 +40,8 @@ bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, 
 		if (!circleShpaeA || !circleShpaeB)
 			return isCollide;
 
-		isCollide = IntersectCircle(bodyA->GetGlobaPose().GetPosition(), circleShpaeA->radius(), bodyB->GetGlobaPose().GetPosition(), circleShpaeB->radius(), contact);
+		isCollide = IntersectCircle(bodyA->GetGlobaPose().GetPosition(), circleShpaeA->radius(), bodyB->GetGlobaPose().GetPosition(), circleShpaeB->radius(), contact);		
+		contact.collideType = CollideType::CircleVsCircle;
 	}			
 	else if (shapeA->GetShapeType() & ShapeType::RECTANGLE_SHAPE && shapeB->GetShapeType() & ShapeType::RECTANGLE_SHAPE)
 	{
@@ -50,6 +51,7 @@ bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, 
 			return isCollide;
 
 		isCollide = IntersectRectangle(rectangleShpaeA->GetVertices(), bodyA->GetGlobaPose(), rectangleShpaeB->GetVertices(), bodyB->GetGlobaPose(), contact);
+		contact.collideType = CollideType::RectangleVsRectangle;
 	}
 	else if (shapeA->GetShapeType() & ShapeType::RECTANGLE_SHAPE && shapeB->GetShapeType() & ShapeType::CIRCLE_SHAPE ||
 		shapeA->GetShapeType() & ShapeType::CIRCLE_SHAPE && shapeB->GetShapeType() & ShapeType::RECTANGLE_SHAPE)
@@ -67,6 +69,8 @@ bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, 
 
 			contact.bodyA = bodyB;
 			contact.bodyB = bodyA;
+			contact.shapeA = shapeB;
+			contact.shapeB = shapeA;
 		}
 		else
 		{
@@ -76,8 +80,9 @@ bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, 
 			pose = bodyA->GetGlobaPose();
 		}
 		isCollide = IntersectRectangleAndCircle(rectangleShape->GetVertices(), pose, center, circleShpae->radius(), contact);
+		contact.collideType = CollideType::RectangleVsCircle;
 	}
-
+	
 	return isCollide;
 }
 
@@ -235,3 +240,41 @@ void CollisionDetector::ProjectCircle(const PhysicsVector axis, const double rad
 	min = dotValue - radius;
 	max = dotValue + radius;
 }
+
+//void CollisionDetector::FindPointInCircles(Contact& contact)
+//{
+//	if (!contact.bodyA || !contact.bodyB || !contact.shapeA || !contact.shapeB)
+//		return;
+//	if (!contact.shapeA->GetShapeType() & ShapeType::CIRCLE_SHAPE || !contact.shapeB->GetShapeType() & ShapeType::CIRCLE_SHAPE)
+//		return;
+//
+//	PhysicsVector translate = contact.normal * contact.penetration * 0.5;
+//	if (contact.bodyA->GetBodyType() & BodyType::STATIC_BODY)
+//		translate = PhysicsVector();
+//	else if (contact.bodyB->GetBodyType() & BodyType::STATIC_BODY)
+//		translate *= 2.0;
+//	PhysicsTransform pose = contact.bodyA->GetGlobaPose();
+//	CircleShape* shape = dynamic_cast<CircleShape*>(contact.shapeA);
+//	PhysicsVector offset = -contact.normal * shape->radius();
+//	
+//	contact.contactPoint.push_back(pose.GetPosition() + translate + offset);
+//}
+//
+//void CollisionDetector::FindPointInPolygonAndCircle(Contact& contact)
+//{
+//	if (!contact.bodyA || !contact.bodyB || !contact.shapeA || !contact.shapeB)
+//		return;
+//	if (contact.shapeA->GetShapeType() & ShapeType::CIRCLE_SHAPE || !contact.shapeB->GetShapeType() & ShapeType::CIRCLE_SHAPE)
+//		return;
+//
+//	PhysicsVector translate = contact.normal * contact.penetration * -0.5;
+//	if (contact.bodyB->GetBodyType() & BodyType::STATIC_BODY)
+//		translate = PhysicsVector();
+//	else if (contact.bodyA->GetBodyType() & BodyType::STATIC_BODY)
+//		translate *= 2.0;
+//	PhysicsTransform pose = contact.bodyB->GetGlobaPose();
+//	CircleShape* shape = dynamic_cast<CircleShape*>(contact.shapeB);
+//	PhysicsVector offset = contact.normal * shape->radius();
+//
+//	contact.contactPoint.push_back(pose.GetPosition() + translate + offset);
+//}

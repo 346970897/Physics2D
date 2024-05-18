@@ -4,6 +4,7 @@
 #include "PhysicsBody.h"
 #include "StaticBody.h"
 #include "DynamicBody.h"
+#include "Contact.h"
 
 class PhysicsWorld
 {
@@ -23,6 +24,8 @@ public:
 
 	void Simulation(const double time, const int iter = 1);
 
+	void SetContactCallback();
+
 private:
 
 	PhysicsWorld(const PhysicsVector gravity);
@@ -33,6 +36,6 @@ private:
 
 	std::vector<PhysicsBody*> m_bodies;
 	PhysicsVector m_gravity = PhysicsVector();
-
+	//ContactCallback* m_contact = nullptr;
 };
 #endif

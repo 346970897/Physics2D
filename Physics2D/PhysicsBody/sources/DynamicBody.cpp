@@ -78,19 +78,23 @@ void DynamicBody::MoveTo(const PhysicsTransform pose)
 void DynamicBody::Simulation(const double time, const PhysicsVector gravity, const int iterator)
 {
 	double stepTime = time / iterator;
+	// compute linear velocity and angular velocity
 	PhysicsVector m_linearAccele = gravity + m_force * m_invMass;
 	PhysicsVector m_angularAccle = m_torque * m_invInertia;
 	m_linearVelocity += m_linearAccele * stepTime;
 	m_angularVelocity += m_angularAccle * stepTime;
-
+	// update pose of rigid
 	PhysicsVector position = m_globaPose.GetPosition() + m_linearVelocity * stepTime;
 	PhysicsVector q = m_angularVelocity * stepTime * 0.5;
 	PhysicsQuat rotation = m_globaPose.GetRotation() + PhysicsQuat(q, 0) * m_globaPose.GetRotation();
 	if (rotation.Magnitude() < Epsilon)
 		rotation = PhysicsQuat();
 	rotation = rotation.Normalize();
+	// force setting axis of z is zero
+	if(std::abs(position.z()) > Epsilon)
+		position.z() = 0;
 	m_globaPose = PhysicsTransform(position, rotation);
-
+	// clear force and torque
 	m_force = PhysicsVector();
 	m_torque = PhysicsVector();
 }

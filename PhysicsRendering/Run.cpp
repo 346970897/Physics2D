@@ -16,9 +16,9 @@ osg::ref_ptr<osg::Group> root = nullptr;
 osg::ref_ptr<osgViewer::Viewer> viewer = nullptr;
 PhysicsWorld* physics_world = nullptr;
 PhysicsBody* ground_body = nullptr;
-PhysicsVector gravity(0, -9800, 0); // gravity is along y
+PhysicsVector gravity(0, -98.00, 0); // gravity is along y
 double time_step = 0.01;
-int iteration = 10;
+int iteration = 1;
 
 class SimulationCallback : public osg::NodeCallback
 {
@@ -103,6 +103,7 @@ public:
 					int value = PhysicsRendering::get_random(0, 1);
 					value = 1;
 					osg::Vec3 position(world_coord.x(), world_coord.y(), 0);
+					osg::Quat rotation(PI / 4, osg::Vec3(0, 0, 1));
 					osg::ref_ptr<osg::PositionAttitudeTransform> transform = nullptr;
 					PhysicsBody* body = nullptr;
 					if (value == 0)
@@ -116,7 +117,11 @@ public:
 						double half_height = 10;
 						double half_width = 10;
 						transform = PhysicsRendering::create_box(half_width, half_height, position);
-						body = PhysicsRendering::create_box_body(half_width, half_height, PhysicsVector(position.x(), position.y(), 0));
+						transform->setAttitude(rotation);
+						PhysicsTransform pose;
+						pose.SetPosition(PhysicsVector(position.x(), position.y(), 0));
+						pose.SetRotation(PhysicsQuat(rotation.x(), rotation.y(), rotation.z(), rotation.w()));
+						body = PhysicsRendering::create_box_body(half_width, half_height, pose);
 					}
 
 					transform->setUpdateCallback(new UpdateCallback(body, transform.get()));

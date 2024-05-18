@@ -33,6 +33,16 @@ PhysicsQuat PhysicsTransform::GetRotation() const
 	return m_rotation;
 }
 
+void PhysicsTransform::SetPosition(const PhysicsVector position)
+{
+	m_position = position;
+}
+
+void PhysicsTransform::SetRotation(const PhysicsQuat rotation)
+{
+	m_rotation = rotation;
+}
+
 PhysicsVector PhysicsTransform::operator*(const PhysicsVector v) const
 {
 	 PhysicsVector retval = v;

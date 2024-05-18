@@ -85,7 +85,7 @@ void PhysicsWorld::Simulation(const double time, const int iter)
 				bool isCollide = CollisionDetector::CollisionDetect(bodyA, bodyB, contact);
 
 				if (isCollide)
-					contact.resolve();
+					contact.Resolve();				
 			}
 		}
 

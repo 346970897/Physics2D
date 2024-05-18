@@ -3,6 +3,19 @@
 
 #include "PhysicsBody.h"
 
+enum CollideType
+{
+	Undefined = 1 << 0,
+	CircleVsCircle = 1 << 1,
+	RectangleVsCircle = 1 << 2,
+	RectangleVsRectangle = 1 << 3
+};
+
+//class ContactCallback
+//{
+//	virtual void onContact(const Contact contact) = 0;
+//};
+
 class Contact
 {
 public:
@@ -11,7 +24,7 @@ public:
 
 	~Contact();
 
-	void resolve();
+	void Resolve();
 
 public:
 
@@ -21,14 +34,22 @@ public:
 	PhysicsShape* shapeB = nullptr;
 	PhysicsVector normal = PhysicsVector();
 	double penetration = 0.0;
-	PhysicsVector* point1 = nullptr;
-	PhysicsVector* point2 = nullptr;
+	std::vector<PhysicsVector> contactPoint;
+	CollideType collideType = CollideType::Undefined;
 
-private:
+private: 
 
-	void resolvePenetration() const;
+	void ResolvePenetration() const;
 
-	void resolveVelocity() const;
+	void ResolveVelocity() const;
+
+	void ResolveContactPoint();
+
+	void FindPointInCircles();
+
+	void FindPointInPolygonAndCircle();
+
+	void FindPointInPolygons();
 
 };
 #endif 

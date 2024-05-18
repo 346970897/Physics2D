@@ -10,6 +10,13 @@ PhysicsVector::PhysicsVector()
 	m_z = 0.0;
 }
 
+PhysicsVector::PhysicsVector(const double value)
+{
+	m_x = value;
+	m_y = value;
+	m_z = value;
+}
+
 PhysicsVector::PhysicsVector(const double x, const double y, const double z)
 {
 	m_x = x;
@@ -114,6 +121,26 @@ PhysicsVector& PhysicsVector::operator*=(const double value)
 	m_x = m_x * value;
 	m_y = m_y * value;
 	m_z = m_z * value;
+
+	return *this;
+}
+
+PhysicsVector PhysicsVector::operator/(const double value) const
+{
+	if (value < 1e-12)
+		return PhysicsVector();
+
+	return PhysicsVector(m_x / value, m_y / value, m_z / value);
+}
+
+PhysicsVector& PhysicsVector::operator/=(const double value)
+{
+	if (value < 1e-12)
+		return *this;
+
+	m_x = m_x / value;
+	m_y = m_y / value;
+	m_z = m_z / value;
 
 	return *this;
 }

@@ -21,11 +21,11 @@ public:
 
 	static osg::ref_ptr<osg::PositionAttitudeTransform> create_box(const double half_height, const double half_width, const osg::Vec3 pose);
 	
-	static PhysicsBody* create_circle_body(const double radius, const PhysicsVector pose);
+	static PhysicsBody* create_circle_body(const double radius, const PhysicsTransform pose);
 	
-	static PhysicsBody* create_ground_body(const double half_height, const double half_width, const PhysicsVector pose);
+	static PhysicsBody* create_ground_body(const double half_height, const double half_width, const PhysicsTransform pose);
 	
-	static PhysicsBody* create_box_body(const double half_width, const double half_height, const PhysicsVector pose);
+	static PhysicsBody* create_box_body(const double half_width, const double half_height, const PhysicsTransform pose);
 
 	static int get_random(const int min_value, const int max_value);
 

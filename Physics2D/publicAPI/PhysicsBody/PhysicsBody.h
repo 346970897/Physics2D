@@ -42,6 +42,8 @@ public:
 
 	void SetAngularVelocity(const PhysicsVector angularVel);
 
+	void AddAngularVelocity(const PhysicsVector angularVel);
+
 	PhysicsVector GetForce() const;
 
 	void AddForce(const PhysicsVector force);

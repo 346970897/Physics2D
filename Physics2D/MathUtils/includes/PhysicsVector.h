@@ -7,6 +7,8 @@ public:
 
 	PhysicsVector();
 
+	PhysicsVector(const double value);
+
 	PhysicsVector(const double x, const double y, const double z);
 
 	~PhysicsVector();
@@ -40,6 +42,10 @@ public:
 	PhysicsVector operator*(const double value) const;
 
 	PhysicsVector& operator*=(const double value);
+
+	PhysicsVector operator/(const double value) const;
+
+	PhysicsVector& operator/=(const double value);
 
 	void operator=(const PhysicsVector value);
 

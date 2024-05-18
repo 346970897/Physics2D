@@ -57,7 +57,7 @@ void PhysicsBody::SetLinearVelocity(const PhysicsVector linearVel)
 
 void PhysicsBody::AddLinearVelocity(const PhysicsVector linearVel)
 {
-    m_linearVelocity = m_linearVelocity + linearVel;
+    m_linearVelocity += linearVel;
 }
 
 PhysicsVector PhysicsBody::GetAngularVelocity() const
@@ -66,6 +66,11 @@ PhysicsVector PhysicsBody::GetAngularVelocity() const
 }
 
 void PhysicsBody::SetAngularVelocity(const PhysicsVector angularVel)
+{
+    m_angularVelocity += angularVel;
+}
+
+void PhysicsBody::AddAngularVelocity(const PhysicsVector angularVel)
 {
     m_angularVelocity = angularVel;
 }
