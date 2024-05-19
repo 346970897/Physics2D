@@ -54,16 +54,21 @@ void Contact::ResolveVelocity() const
 	PhysicsVector linearVelA = -normal * lambda * bodyA->GetInvMass();
 	PhysicsVector linearVelB = normal * lambda * bodyB->GetInvMass();
 	// compute angular velocity
-	PhysicsVector point;
-	for (auto p : contactPoint)
+	PhysicsVector angluarVelA;
+	PhysicsVector angluarVelB;
+	if (contactPoint.size() != 0)
 	{
-		point += p;
+		PhysicsVector point;
+		for (auto p : contactPoint)
+		{
+			point += p;
+		}
+		point /= (int)contactPoint.size();
+		PhysicsVector r1 = point - bodyA->GetGlobaPose().GetPosition();
+		PhysicsVector r2 = point - bodyB->GetGlobaPose().GetPosition();
+		angluarVelA = (r1.CrossProduct(-normal * lambda)) * bodyA->GetInvInertia();
+		angluarVelB = (r2.CrossProduct(normal * lambda)) * bodyB->GetInvInertia();
 	}
-	point /= std::max((int)contactPoint.size(), 1);
-	PhysicsVector r1 = point - bodyA->GetGlobaPose().GetPosition();
-	PhysicsVector r2 = point - bodyB->GetGlobaPose().GetPosition();
-	PhysicsVector angluarVelA = (r1.CrossProduct(-normal * lambda)) * bodyA->GetInvInertia();
-	PhysicsVector angluarVelB = (r2.CrossProduct(normal * lambda)) * bodyB->GetInvInertia();
 
 	// apply velocity
 	bodyA->AddLinearVelocity(linearVelA);
@@ -96,47 +101,48 @@ void Contact::FindPointInPolygons()
 	std::vector<PhysicsVector> edgesA;
 	PhysicsTransform poseA = bodyA->GetGlobaPose();
 	RectangleShape* rectShapeA = dynamic_cast<RectangleShape*>(shapeA);
-	if (rectShapeA)
+	if (!rectShapeA)
+		return;
+
+	int n = rectShapeA->GetVertices().size();
+	for (int i = 0; i < n; i++)
 	{
-		int n = rectShapeA->GetVertices().size();
-		for (int i = 0; i < n; i++)
+		PhysicsVector point1 = rectShapeA->GetVertices()[i];
+		PhysicsVector point2 = rectShapeA->GetVertices()[(i + 1) % n];
+		point1 = poseA * point1;
+		point2 = poseA * point2;
+		PhysicsVector edge = point2 - point1;
+		edge = edge.Normalize();
+		if (std::abs(edge.DotProduct(normal)) < Epsilon)
 		{
-			PhysicsVector point1 = rectShapeA->GetVertices()[i];
-			PhysicsVector point2 = rectShapeA->GetVertices()[(i + 1) % n];
-			point1 = poseA * point1;
-			point2 = poseA * point2;
-			PhysicsVector edge = point2 - point1;
-			edge = edge.Normalize();
-			if (std::abs(edge.DotProduct(normal)) < Epsilon)
-			{
-				edgesA.push_back(point1);
-				edgesA.push_back(point2);
-			}
+			edgesA.push_back(point1);
+			edgesA.push_back(point2);
 		}
 	}
+	
 	std::vector<PhysicsVector> edgesB;
 	PhysicsTransform poseB = bodyB->GetGlobaPose();
 	RectangleShape* rectShapeB = dynamic_cast<RectangleShape*>(shapeB);
-	if (rectShapeB)
+	if (!rectShapeB)
+		return;
+
+	int m = rectShapeB->GetVertices().size();
+	for (int i = 0; i < m; i++)
 	{
-		int n = rectShapeB->GetVertices().size();
-		for (int i = 0; i < n; i++)
+		PhysicsVector point1 = rectShapeB->GetVertices()[i];
+		PhysicsVector point2 = rectShapeB->GetVertices()[(i + 1) % n];
+		point1 = poseB * point1;
+		point2 = poseB * point2;
+		PhysicsVector edge = point2 - point1;
+		edge = edge.Normalize();
+		if (std::abs(edge.DotProduct(normal)) < Epsilon)
 		{
-			PhysicsVector point1 = rectShapeB->GetVertices()[i];
-			PhysicsVector point2 = rectShapeB->GetVertices()[(i + 1) % n];
-			point1 = poseB * point1;
-			point2 = poseB * point2;
-			PhysicsVector edge = point2 - point1;
-			edge = edge.Normalize();
-			if (std::abs(edge.DotProduct(normal)) < Epsilon)
-			{
-				edgesB.push_back(point1);
-				edgesB.push_back(point2);
-			}
-
+			edgesB.push_back(point1);
+			edgesB.push_back(point2);
 		}
-	}
 
+	}
+	
 	// if there are intersecting edges
 	for (int i = 0; i < edgesA.size(); i += 2)
 	{
@@ -191,28 +197,30 @@ void Contact::FindPointInPolygons()
 	}
 
 	// there is the point on line
-	for (auto point : edgesA)
+	for (int i = 0; i < n && edgesB.size() > 0; i++)
 	{
-		for (int i = 0; i < edgesB.size(); i += 2)
+		PhysicsVector point = poseA * rectShapeA->GetVertices()[i];
+		for (int j = 0; j < edgesB.size(); j += 2)
 		{
-			PhysicsVector edge = edgesB[i] - edgesB[i + 1];
-			double value = edge.DotProduct(edge);
-			double dotValue = (point - edgesB[i]).DotProduct(edge);
-			if (dotValue >= 0 && dotValue <= value)
+			PhysicsVector edge = edgesB[j + 1] - edgesB[j];
+			edge = edge.Normalize();
+			double dotValue = (point - edgesB[j]).Normalize().DotProduct(edge);
+			if (dotValue > 0 && std::abs(dotValue - 1) < Epsilon)
 			{
 				contactPoint.push_back(point);
 				return;
 			}
 		}
 	}
-	for (auto point : edgesB)
+	for (int i = 0; i < m && edgesA.size() > 0; i++)
 	{
-		for (int i = 0; i < edgesA.size(); i += 2)
+		PhysicsVector point = poseB * rectShapeB->GetVertices()[i];
+		for (int j = 0; j < edgesA.size(); j += 2)
 		{
-			PhysicsVector edge = edgesA[i] - edgesA[i + 1];
-			double value = edge.DotProduct(edge);
-			double dotValue = (point - edgesA[i]).DotProduct(edge);
-			if (dotValue >= 0 && dotValue <= value)
+			PhysicsVector edge = edgesA[j + 1] - edgesA[j];
+			edge = edge.Normalize();
+			double dotValue = (point - edgesA[j]).Normalize().DotProduct(edge);
+			if (dotValue >= 0 && std::abs(dotValue - 1) < Epsilon)
 			{
 				contactPoint.push_back(point);
 				return;

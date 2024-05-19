@@ -16,7 +16,7 @@ osg::ref_ptr<osg::Group> root = nullptr;
 osg::ref_ptr<osgViewer::Viewer> viewer = nullptr;
 PhysicsWorld* physics_world = nullptr;
 PhysicsBody* ground_body = nullptr;
-PhysicsVector gravity(0, -98.00, 0); // gravity is along y
+PhysicsVector gravity(0, -980.0, 0); // gravity is along y
 double time_step = 0.01;
 int iteration = 1;
 
@@ -101,7 +101,7 @@ public:
 					osg::Vec3d world_coord = win * inv_matrix;
 
 					int value = PhysicsRendering::get_random(0, 1);
-					value = 1;
+					//value = 1;
 					osg::Vec3 position(world_coord.x(), world_coord.y(), 0);
 					osg::Quat rotation(0/*PI / 4*/, osg::Vec3(0, 0, 1));
 					osg::ref_ptr<osg::PositionAttitudeTransform> transform = nullptr;
