@@ -31,22 +31,22 @@ PhysicsQuat::~PhysicsQuat()
 }
 
 
-double PhysicsQuat::x() const
+double& PhysicsQuat::x()
 {
 	return m_x;
 }
 
-double PhysicsQuat::y() const
+double& PhysicsQuat::y()
 {
 	return m_y;
 }
 
-double PhysicsQuat::z() const
+double& PhysicsQuat::z()
 {
 	return m_z;
 }
 
-double PhysicsQuat::w() const
+double& PhysicsQuat::w()
 {
 	return m_w;
 }

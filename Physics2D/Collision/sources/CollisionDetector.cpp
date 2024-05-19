@@ -121,8 +121,12 @@ bool CollisionDetector::IntersectRectangle(std::vector<PhysicsVector> verticesA,
 	// get axis for project
 	for (int i = 0; i < 2; i++)
 	{
-		PhysicsVector vectorA = verticesA[i + 1] - verticesA[i];
-		PhysicsVector vectorB = verticesB[i + 1] - verticesB[i];
+		PhysicsVector point1 = poseA * verticesA[i];
+		PhysicsVector point2 = poseA * verticesA[i + 1];
+		PhysicsVector vectorA = point2 - point1;
+		point1 = poseB * verticesB[i];
+		point2 = poseB * verticesB[i + 1];
+		PhysicsVector vectorB = point2 - point1;
 		vectorA = vectorA.Normalize();
 		vectorB = vectorB.Normalize();
 		vectorA = PhysicsVector(-vectorA.y(), vectorA.x(), 0);
@@ -240,41 +244,3 @@ void CollisionDetector::ProjectCircle(const PhysicsVector axis, const double rad
 	min = dotValue - radius;
 	max = dotValue + radius;
 }
-
-//void CollisionDetector::FindPointInCircles(Contact& contact)
-//{
-//	if (!contact.bodyA || !contact.bodyB || !contact.shapeA || !contact.shapeB)
-//		return;
-//	if (!contact.shapeA->GetShapeType() & ShapeType::CIRCLE_SHAPE || !contact.shapeB->GetShapeType() & ShapeType::CIRCLE_SHAPE)
-//		return;
-//
-//	PhysicsVector translate = contact.normal * contact.penetration * 0.5;
-//	if (contact.bodyA->GetBodyType() & BodyType::STATIC_BODY)
-//		translate = PhysicsVector();
-//	else if (contact.bodyB->GetBodyType() & BodyType::STATIC_BODY)
-//		translate *= 2.0;
-//	PhysicsTransform pose = contact.bodyA->GetGlobaPose();
-//	CircleShape* shape = dynamic_cast<CircleShape*>(contact.shapeA);
-//	PhysicsVector offset = -contact.normal * shape->radius();
-//	
-//	contact.contactPoint.push_back(pose.GetPosition() + translate + offset);
-//}
-//
-//void CollisionDetector::FindPointInPolygonAndCircle(Contact& contact)
-//{
-//	if (!contact.bodyA || !contact.bodyB || !contact.shapeA || !contact.shapeB)
-//		return;
-//	if (contact.shapeA->GetShapeType() & ShapeType::CIRCLE_SHAPE || !contact.shapeB->GetShapeType() & ShapeType::CIRCLE_SHAPE)
-//		return;
-//
-//	PhysicsVector translate = contact.normal * contact.penetration * -0.5;
-//	if (contact.bodyB->GetBodyType() & BodyType::STATIC_BODY)
-//		translate = PhysicsVector();
-//	else if (contact.bodyA->GetBodyType() & BodyType::STATIC_BODY)
-//		translate *= 2.0;
-//	PhysicsTransform pose = contact.bodyB->GetGlobaPose();
-//	CircleShape* shape = dynamic_cast<CircleShape*>(contact.shapeB);
-//	PhysicsVector offset = contact.normal * shape->radius();
-//
-//	contact.contactPoint.push_back(pose.GetPosition() + translate + offset);
-//}

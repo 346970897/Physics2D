@@ -103,7 +103,7 @@ public:
 					int value = PhysicsRendering::get_random(0, 1);
 					value = 1;
 					osg::Vec3 position(world_coord.x(), world_coord.y(), 0);
-					osg::Quat rotation(PI / 4, osg::Vec3(0, 0, 1));
+					osg::Quat rotation(0/*PI / 4*/, osg::Vec3(0, 0, 1));
 					osg::ref_ptr<osg::PositionAttitudeTransform> transform = nullptr;
 					PhysicsBody* body = nullptr;
 					if (value == 0)

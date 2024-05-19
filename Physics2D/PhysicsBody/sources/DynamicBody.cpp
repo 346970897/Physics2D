@@ -93,6 +93,11 @@ void DynamicBody::Simulation(const double time, const PhysicsVector gravity, con
 	// force setting axis of z is zero
 	if(std::abs(position.z()) > Epsilon)
 		position.z() = 0;
+	if (std::abs(rotation.x()) > Epsilon || std::abs(rotation.y()) > Epsilon)
+	{
+		rotation.x() = 0;
+		rotation.y() = 0;
+	}
 	m_globaPose = PhysicsTransform(position, rotation);
 	// clear force and torque
 	m_force = PhysicsVector();

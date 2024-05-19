@@ -16,13 +16,13 @@ public:
 
 	~PhysicsQuat();
 
-	double x() const;
+	double& x();
 
-	double y() const;
+	double& y();
 
-	double z() const;
+	double& z();
 
-	double w() const;
+	double& w();
 
 	double Magnitude();
 

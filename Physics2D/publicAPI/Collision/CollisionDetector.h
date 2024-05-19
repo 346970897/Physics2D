@@ -25,12 +25,6 @@ private:
 	static void ProjectPolygon(const PhysicsVector axis, std::vector<PhysicsVector> vertices, const PhysicsTransform pose, double& min, double& max);
 
 	static void ProjectCircle(const PhysicsVector axis, const double radius, const PhysicsVector center, double& min, double& max);
-
-	//static void FindPointInCircles(Contact& contact);
-	//
-	//static void FindPointInPolygonAndCircle(Contact& contact);
-
-	//static void FindPointInPolygons();
 };
 #endif 
 

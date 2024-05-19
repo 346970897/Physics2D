@@ -13,11 +13,23 @@ PhysicsBody::~PhysicsBody()
 
 void PhysicsBody::GetAABB(PhysicsVector& min, PhysicsVector& max)
 {
+    min = PhysicsVector(DBL_MAX);
+    max = PhysicsVector(-DBL_MAX);
     PhysicsVector maxValue;
     PhysicsVector minValue;
     m_shape->GetAABB(minValue, maxValue);
-    min = m_globaPose * minValue;
-    max = m_globaPose * maxValue;
+    for (int i = 0; i < 4; i++)
+    {
+        PhysicsVector point(0, 0, 0);
+        point.x() = i > 1 ? maxValue.x() : minValue.x();
+        point.y() = i % 2 == 0 ? maxValue.y() : minValue.y();
+        point = m_globaPose * point;
+
+        min.x() = std::min(point.x(), min.x());
+        min.y() = std::min(point.y(), min.y());
+        max.x() = std::max(point.x(), max.x());
+        max.y() = std::max(point.y(), max.y());
+    }
 }
 
 PhysicsTransform PhysicsBody::GetGlobaPose()
