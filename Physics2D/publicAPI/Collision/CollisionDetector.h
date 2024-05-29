@@ -1,6 +1,5 @@
 #ifndef COLLISION_DETECTOR_H
 #define COLLISION_DETECTOR_H
-
 #include "Contact.h"
 class CollisionDetector
 {
@@ -10,9 +9,9 @@ public:
 
 private:
 
-	CollisionDetector();
+	CollisionDetector() = default;
 
-	~CollisionDetector();
+	~CollisionDetector()=default;
 
 	static bool IntersectAABB(PhysicsVector minA, PhysicsVector maxA, PhysicsVector minB, PhysicsVector maxB);
 

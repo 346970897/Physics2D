@@ -9,7 +9,8 @@ enum ShapeType
 	UNDEFINE_SHAPE = 1 << 0,
 	CIRCLE_SHAPE = 1 << 1,
 	RECTANGLE_SHAPE = 1 << 2,
-	CONVEX_SHAPE = 1 << 3
+	CONVEX_SHAPE = 1 << 3,
+	TRIANGLE_SHAPE = 1 << 4
 };
 
 class PhysicsShape

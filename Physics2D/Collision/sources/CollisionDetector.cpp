@@ -2,14 +2,6 @@
 #include "CircleShape.h"
 #include "RectangleShape.h"
 
-CollisionDetector::CollisionDetector()
-{
-
-}
-
-CollisionDetector::~CollisionDetector()
-{
-}
 
 bool CollisionDetector::CollisionDetect(PhysicsBody* bodyA, PhysicsBody* bodyB, Contact& contact)
 {

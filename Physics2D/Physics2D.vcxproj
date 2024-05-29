@@ -145,6 +145,7 @@
     <ClInclude Include="publicAPI\PhysicsShape\PhyscisShape.h" />
     <ClInclude Include="publicAPI\PhysicsShape\RectangleShape.h" />
     <ClInclude Include="publicAPI\PhysicsWorld\PhysicsWorld.h" />
+    <ClInclude Include="TriangleShape.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collision\sources\CollisionDetector.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="PhysicsShape\sources\PhyscisShape.cpp" />
     <ClCompile Include="PhysicsShape\sources\RectangleShape.cpp" />
     <ClCompile Include="PhysicsWorld\PhysicsWorld.cpp" />
+    <ClCompile Include="TriangleShape.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

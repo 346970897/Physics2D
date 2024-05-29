@@ -99,6 +99,9 @@
     <ClInclude Include="ConvexHull.h">
       <Filter>algorim</Filter>
     </ClInclude>
+    <ClInclude Include="TriangleShape.h">
+      <Filter>PhysicsShape\includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhysicsTest.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="ConvexHull.cpp">
       <Filter>algorim</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleShape.cpp">
+      <Filter>PhysicsShape\sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
